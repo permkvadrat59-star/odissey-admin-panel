@@ -47,19 +47,19 @@ get_header();
 <section class="wrap">
   <div class="page-hero">
     <h1>Как нас найти</h1>
-    <p class="hero-sub">Пермь, ул. Стахановская, 54Л · остановки «Манеж Спартак», «Снайперов», «Стахановская»</p>
-    <div class="cta-row"><a class="btn btn-red" href="https://yandex.ru/maps/?text=%D0%9F%D0%B5%D1%80%D0%BC%D1%8C%2C%20%D0%A1%D1%82%D0%B0%D1%85%D0%B0%D0%BD%D0%BE%D0%B2%D1%81%D0%BA%D0%B0%D1%8F%2054%D0%9B" target="_blank" rel="noopener">Маршрут в Яндекс.Картах</a></div>
+    <p class="hero-sub"><?php echo esc_html(odissey_opt('address')); ?> · остановки «Манеж Спартак», «Снайперов», «Стахановская»</p>
+    <div class="cta-row"><a class="btn btn-red" href="https://yandex.ru/maps/?text=<?php echo urlencode(odissey_opt('address')); ?>" target="_blank" rel="noopener">Маршрут в Яндекс.Картах</a></div>
   </div>
 </section>
 <section class="wrap canvas contacts-flow" style="margin-top:24px">
   <div class="bento g-split rv">
     <div class="cell" style="padding:0;overflow:hidden;min-height:360px;position:relative">
-      <iframe src="https://yandex.ru/map-widget/v1/?ll=56.209171%2C57.988030&z=16&pt=56.209171%2C57.988030%2Cpm2rdm" style="border:0;display:block;width:100%;height:100%" loading="lazy" title="Одиссей на карте – Пермь, ул. Стахановская, 54Л"></iframe>
+      <iframe src="https://yandex.ru/map-widget/v1/?ll=56.209171%2C57.988030&z=16&pt=56.209171%2C57.988030%2Cpm2rdm" style="border:0;display:block;width:100%;height:100%" loading="lazy" title="<?php echo esc_attr('Одиссей на карте – ' . odissey_opt('address')); ?>"></iframe>
     </div>
     <div style="display:grid;gap:1px;background:var(--line)">
-      <div class="cell c-cell"><b>Охрана</b><div class="v"><a href="tel:+73422066911">+7 (342) 20-66-911</a></div><span>Пн–Пт 9:00–18:00 · дежурная часть круглосуточно · <a href="mailto:odyssey.security@mail.ru" style="color:var(--muted)">odyssey.security@mail.ru</a></span></div>
-      <div class="cell c-cell"><b>Тир</b><div class="v"><a href="tel:+73422066161">+7 (342) 20-66-161</a></div><span>Ср–Вс 12:00–20:00 · <a href="mailto:tirodissey@mail.ru" style="color:var(--muted)">tirodissey@mail.ru</a></span></div>
-      <div class="cell c-cell"><b>Учебный центр</b><div class="v"><a href="tel:+73422061911">+7 (342) 20-61-911</a></div></div>
+      <div class="cell c-cell"><b>Охрана</b><div class="v"><a href="<?php echo esc_attr(odissey_tel(odissey_opt('phone_main'))); ?>"><?php echo esc_html(odissey_opt('phone_main')); ?></a></div><span>Пн–Пт 9:00–18:00 · дежурная часть круглосуточно · <a href="<?php echo esc_attr('mailto:' . odissey_opt('email')); ?>" style="color:var(--muted)"><?php echo esc_html(odissey_opt('email')); ?></a></span></div>
+      <div class="cell c-cell"><b>Тир</b><div class="v"><a href="<?php echo esc_attr(odissey_tel(odissey_opt('phone_tir'))); ?>"><?php echo esc_html(odissey_opt('phone_tir')); ?></a></div><span>Ср–Вс 12:00–20:00 · <a href="<?php echo esc_attr('mailto:' . odissey_opt('email_tir')); ?>" style="color:var(--muted)"><?php echo esc_html(odissey_opt('email_tir')); ?></a></span></div>
+      <div class="cell c-cell"><b>Учебный центр</b><div class="v"><a href="<?php echo esc_attr(odissey_tel(odissey_opt('phone_uc'))); ?>"><?php echo esc_html(odissey_opt('phone_uc')); ?></a></div></div>
     </div>
   </div>
   <div class="bento bento--seamtop rv">

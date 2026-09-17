@@ -134,7 +134,7 @@ get_header();
     </div>
     <a class="photo-cell" href="<?php echo esc_url(odissey_link('ohrana')); ?>">
       <img src="<?php echo $A; ?>/photo/ohrana_meropriyatiya.webp" alt="Охрана массового мероприятия">
-      <div class="photo-cap"><b>Дежурная часть 24/7</b>+7 (342) 21-41-911 · реакция на тревогу круглосуточно</div>
+      <div class="photo-cap"><b>Дежурная часть 24/7</b><?php echo esc_html(odissey_opt('phone_duty1')); ?> · реакция на тревогу круглосуточно</div>
     </a>
   </div>
 </section>
@@ -156,16 +156,13 @@ get_header();
     </a>
   </div>
   <div class="bento g-3 bento--seamtop rv">
+    <?php foreach (odissey_price_rows_for('tir', 'Занятия') as $r): ?>
     <div class="cell cell-flex pr-cell">
-      <div class="nm">Стрельба из пистолета</div>
-      <div class="pr">2 680 ₽</div>
-      <p>20 выстрелов, 2 мишени и курс безопасного обращения с оружием; далее – 100 ₽ за выстрел</p>
+      <div class="nm"><?php echo esc_html($r['name']); ?></div>
+      <div class="pr"><?php echo esc_html($r['price']); ?></div>
+      <?php if ($r['note'] !== ''): ?><p><?php echo esc_html($r['note']); ?></p><?php endif; ?>
     </div>
-    <div class="cell cell-flex pr-cell">
-      <div class="nm">Длинноствольное оружие</div>
-      <div class="pr">3 680 ₽</div>
-      <p>20 выстрелов, 2 мишени и курс безопасного обращения с оружием; далее – 150 ₽ за выстрел</p>
-    </div>
+    <?php endforeach; ?>
     <div class="cell cell-flex pr-cell">
       <div class="nm">Подарочные карты</div>
       <div class="pr">от 5 680 ₽</div>
