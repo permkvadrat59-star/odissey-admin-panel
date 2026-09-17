@@ -17,7 +17,7 @@ get_header();
     <div class="kicker">ООО «Одиссей-СБ» · лицензия Росгвардии ЧО № 056449</div>
     <h1>Охранное предприятие</h1>
     <p class="hero-sub hero-sub--mobile-hide">Кадровая основа – бывшие сотрудники силовых структур. Дежурная часть отвечает круглосуточно, группа быстрого реагирования выезжает по тревоге.</p>
-    <div class="cta-row"><button class="btn btn-red" type="button" data-cta data-tema="Охрана объекта">Получить расчёт</button><a class="btn btn-line" href="tel:+73422141911">Дежурная часть</a></div>
+    <div class="cta-row"><button class="btn btn-red" type="button" data-cta data-tema="Охрана объекта">Получить расчёт</button><a class="btn btn-line" href="<?php echo esc_attr(odissey_tel(odissey_opt('phone_duty1'))); ?>">Дежурная часть</a></div>
   </div>
 </section>
 
@@ -120,7 +120,7 @@ get_header();
     <div><h2>Обсудим ваш объект?</h2><p>Расчёт по телефону или заявке: выезд на объект, схема постов, смета.</p></div>
     <div class="btns">
       <button class="btn btn-solid" type="button" data-cta data-tema="Охрана объекта">Оставить заявку</button>
-      <a class="btn btn-white" href="tel:+73422141911">Дежурная часть: +7 (342) 21-41-911</a>
+      <a class="btn btn-white" href="<?php echo esc_attr(odissey_tel(odissey_opt('phone_duty1'))); ?>">Дежурная часть: <?php echo esc_html(odissey_opt('phone_duty1')); ?></a>
     </div>
   </div>
 </section>

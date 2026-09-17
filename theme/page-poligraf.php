@@ -92,7 +92,7 @@ get_header();
     <div><h2>Нужна проверка?</h2><p>Конфиденциально: обсудим задачу и назначим время.</p></div>
     <div class="btns">
       <button class="btn btn-solid" type="button" data-cta data-tema="Проверка на полиграфе">Оставить заявку</button>
-      <a class="btn btn-white" href="tel:+73422066911">+7 (342) 20-66-911</a>
+      <a class="btn btn-white" href="<?php echo esc_attr(odissey_tel(odissey_opt('phone_main'))); ?>"><?php echo esc_html(odissey_opt('phone_main')); ?></a>
     </div>
   </div>
 </section>

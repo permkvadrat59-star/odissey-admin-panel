@@ -177,7 +177,7 @@ get_header();
     <?php if ($programma): ?>
     <div class="cta-row"><a class="btn btn-red" href="<?php echo esc_url($programma); ?>" target="_blank" rel="noopener">Программа обучения, PDF</a><a class="btn btn-line" href="<?php echo esc_url($acts[5]['url']); ?>">Текст ГОСТ Р 59087-2020</a></div>
     <?php else: ?>
-    <div class="cta-row"><a class="btn btn-red" href="tel:+73422066161">+7 (342) 20-66-161</a></div>
+    <div class="cta-row"><a class="btn btn-red" href="<?php echo esc_attr(odissey_tel(odissey_opt('phone_tir'))); ?>"><?php echo esc_html(odissey_opt('phone_tir')); ?></a></div>
     <?php endif; ?>
   </div>
 </section>
@@ -272,7 +272,7 @@ get_header();
 <section class="wrap" style="margin-top:128px">
   <div class="cta-band rv">
     <div><h2>Готовы к занятию?</h2><p>Запись по телефону в рабочие дни тира: среда – воскресенье, 12:00–20:00.</p></div>
-    <div class="cta-row"><button class="btn btn-red" type="button" data-cta data-tema="Обучение в ССК «Одиссей»">Записаться</button><a class="btn btn-line" href="tel:+73422066161">+7 (342) 20-66-161</a></div>
+    <div class="cta-row"><button class="btn btn-red" type="button" data-cta data-tema="Обучение в ССК «Одиссей»">Записаться</button><a class="btn btn-line" href="<?php echo esc_attr(odissey_tel(odissey_opt('phone_tir'))); ?>"><?php echo esc_html(odissey_opt('phone_tir')); ?></a></div>
   </div>
 </section>
 
