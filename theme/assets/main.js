@@ -113,13 +113,28 @@
     };
     if (!input.value) setDigits('');
     input.addEventListener('focus', () => { if (!input.value) setDigits(''); });
+    const navKeys = ['Tab', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End', 'Escape', 'Enter'];
     input.addEventListener('keydown', e => {
       if (e.key === 'Backspace' || e.key === 'Delete') {
         e.preventDefault();
         setDigits(toDigits(input.value).slice(0, -1));
+        return;
       }
+      if (navKeys.includes(e.key) || e.ctrlKey || e.metaKey) return;
+      // блокируем всё, кроме цифр, уже на нажатии клавиши — иначе буква
+      // на миг появляется в поле и тут же стирается перерисовкой (глюк)
+      if (!/^[0-9]$/.test(e.key)) e.preventDefault();
     });
+    // подстраховка на случай, если не-цифра всё же попала в значение
+    // (автозаполнение браузера, нестандартная мобильная клавиатура)
     input.addEventListener('input', () => setDigits(toDigits(input.value)));
+    input.addEventListener('paste', e => {
+      e.preventDefault();
+      // берём цифры только из вставляемого текста: в поле уже лежит наш "+7",
+      // если приплюсовать его к вставке — цифры съезжают на одну позицию
+      const text = (e.clipboardData || window.clipboardData).getData('text');
+      setDigits(toDigits(text));
+    });
   });
 
   // Модалка заявки
