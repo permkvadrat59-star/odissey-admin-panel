@@ -37,7 +37,7 @@ get_header();
     </div>
     <div class="hb-side">
       <span class="hb-note">Запись строго в рабочие дни тира</span>
-      <a class="hb-phone" href="tel:+73422066161">+7 (342) 20-66-161</a>
+      <a class="hb-phone" href="<?php echo esc_attr(odissey_tel(odissey_opt('phone_tir'))); ?>"><?php echo esc_html(odissey_opt('phone_tir')); ?></a>
     </div>
   </div>
   <div class="bento g-3 bento--seamtop rv">
@@ -92,98 +92,12 @@ get_header();
     </div>
   </div>
   <div class="bento g-4 bento--seamtop rv">
-<div class="cell wcard">
-  <div class="shot"><img class="mirror" src="<?php echo $A; ?>/photo/oruzhie/card/105-avtomat-kalashnikova-akms.webp" alt="Автомат Калашникова (АКМС)" loading="lazy"></div>
-  <div class="body"><span class="num">01 /</span><h3>Автомат Калашникова (АКМС)</h3><p>7,62-мм автомат Калашникова принят на вооружение в СССР в 1949 году. Индекс ГРАУ – 56-А-212.</p></div>
-</div>
-<div class="cell wcard">
-  <div class="shot"><img class="mirror" src="<?php echo $A; ?>/photo/oruzhie/card/106-ruchnoj-pulemet-kalashnikova.webp" alt="Ручной пулемёт Калашникова" loading="lazy"></div>
-  <div class="body"><span class="num">02 /</span><h3>Ручной пулемёт Калашникова</h3><p>7,62-мм ручной пулемёт Калашникова (РПК, Индекс ГРАУ – 6П2) – советский ручной пулемёт, созданный на основе автомата АКМ.</p></div>
-</div>
-<div class="cell wcard">
-  <div class="shot"><img class="mirror" src="<?php echo $A; ?>/photo/oruzhie/card/11-pistolet-beretta-92-italija.webp" alt="Пистолет Beretta 92 (Италия)" loading="lazy"></div>
-  <div class="body"><span class="num">03 /</span><h3>Пистолет Beretta 92 (Италия)</h3><p>Классика итальянской оружейной школы. Калибр 9×19 мм, длина 217 мм, длина ствола 125 мм.</p></div>
-</div>
-<div class="cell wcard">
-  <div class="shot"><img class="mirror" src="<?php echo $A; ?>/photo/oruzhie/card/14-pistolet-pulemet-glock-17.webp" alt="Пистолет Glock 17" loading="lazy"></div>
-  <div class="body"><span class="num">04 /</span><h3>Пистолет Glock 17</h3><p>Четвёртое поколение. Пистолеты конструкции Гастона Глока серийно производятся в Австрии с начала 1980-х.</p></div>
-</div>
-<div class="cell wcard">
-  <div class="shot"><img class="mirror" src="<?php echo $A; ?>/photo/oruzhie/card/15-pistolet-glock-34-glok-34-avstrija.webp" alt="Пистолет Glock 34 ГЛОК-34 (Австрия)" loading="lazy"></div>
-  <div class="body"><span class="num">05 /</span><h3>Пистолет Glock 34 (Австрия)</h3><p>Модели 34 и 35 сделаны под спортивную стрельбу. Представлены в 1998 году, через год доработаны.</p></div>
-</div>
-<div class="cell wcard">
-  <div class="shot"><img class="mirror" src="<?php echo $A; ?>/photo/oruzhie/card/16-pistolet-cz-75-sp-01-shadow-chehija.webp" alt="Пистолет CZ-75 SP-01 Shadow (Чехия)" loading="lazy"></div>
-  <div class="body"><span class="num">06 /</span><h3>Пистолет CZ-75 SP-01 Shadow (Чехия)</h3><p>Оружейная компания Ceska Zbrojovka производит пистолеты CZ 75 уже свыше тридцати лет, а количество выпущенных за это время единиц приближается к трём четвертям миллиона.</p></div>
-</div>
-<div class="cell wcard">
-  <div class="shot"><img class="mirror" src="<?php echo $A; ?>/photo/oruzhie/card/17-pistolet-k-100-grand-power-slovakija.webp" alt="Пистолет K-100 Grand Power (Словакия)" loading="lazy"></div>
-  <div class="body"><span class="num">07 /</span><h3>Пистолет K-100 Grand Power (Словакия)</h3><p>Пистолет словацкой компании «Grand Power», разработан инженером Ярославом Курацина.</p></div>
-</div>
-<div class="cell wcard">
-  <div class="shot"><img src="<?php echo $A; ?>/photo/oruzhie/card/18-pistolet-steyr-m9-a1-cal-919-avstrija.webp" alt="Пистолет Steyr M9-A1 cal 9×19 (Австрия)" loading="lazy"></div>
-  <div class="body"><span class="num">08 /</span><h3>Пистолет Steyr M9-A1 (Австрия)</h3><p>В 1999 году австрийская компания Steyr Mannlicher представила новый пистолет серии Steyr M, созданный конструктором Вильгельмом Бубитсом.</p></div>
-</div>
-<div class="cell wcard">
-  <div class="shot"><img src="<?php echo $A; ?>/photo/oruzhie/card/19-pistolet-colt-m1911-ssha.webp" alt="Пистолет Colt M1911 (США)" loading="lazy"></div>
-  <div class="body"><span class="num">09 /</span><h3>Пистолет Colt M1911 (США)</h3><p>Colt M1911 сначала применялся только в кавалерии армии США, полиция не пользовалась им из-за чрезмерной мощности патрона.</p></div>
-</div>
-<div class="cell wcard">
-  <div class="shot"><img class="mirror" src="<?php echo $A; ?>/photo/oruzhie/card/20-samozarjadnyj-karabin-taurus-ct9-g2-brazilija.webp" alt="Самозарядный карабин Taurus CT9 G2 (Бразилия)" loading="lazy"></div>
-  <div class="body"><span class="num">10 /</span><h3>Самозарядный карабин Taurus CT9 G2 (Бразилия)</h3><p>Самозарядный карабин Taurus CT9 G2 под пистолетный боеприпас 9×19 Luger – новейшая модель от Taurus.</p></div>
-</div>
-<div class="cell wcard">
-  <div class="shot"><img src="<?php echo $A; ?>/photo/oruzhie/card/21-revolver-taurus-94-brazilija.webp" alt="Револьвер TAURUS 94 (Бразилия)" loading="lazy"></div>
-  <div class="body"><span class="num">11 /</span><h3>Револьвер TAURUS 94 (Бразилия)</h3><p>Классический револьвер с ударно-спусковым механизмом двойного действия. Тренировочное и спортивное оружие, держит быстрый темп стрельбы.</p></div>
-</div>
-<div class="cell wcard">
-  <div class="shot"><img class="mirror" src="<?php echo $A; ?>/photo/oruzhie/card/22-revolver-taurus-66-cal357-mag-brazilija.webp" alt="Револьвер TAURUS 66 cal.357 Mag (Бразилия)" loading="lazy"></div>
-  <div class="body"><span class="num">12 /</span><h3>Револьвер Taurus 66 .357 Mag (Бразилия)</h3><p>Мощный классический шестизарядный TAURUS 66 – полноразмерный спортивно-тренировочный револьвер.</p></div>
-</div>
-<div class="cell wcard">
-  <div class="shot"><img src="<?php echo $A; ?>/photo/oruzhie/card/23-pistolet-taurus-24-7-brazilija.webp" alt="Пистолет Taurus 24/7 (Бразилия)" loading="lazy"></div>
-  <div class="body"><span class="num">13 /</span><h3>Пистолет Taurus 24/7 (Бразилия)</h3><p>Пистолеты Taurus серии 24/7 предназначены для вооружения полиции и гражданских лиц, впервые представлены в 2004 году.</p></div>
-</div>
-<div class="cell wcard">
-  <div class="shot"><img src="<?php echo $A; ?>/photo/oruzhie/card/24-sportivnyj-pistolet-smith-amp-wesson-model-22a-ssha.webp" alt="Спортивный пистолет Smith &amp; Wesson model 22A (США)" loading="lazy"></div>
-  <div class="body"><span class="num">14 /</span><h3>Спортивный пистолет Smith & Wesson model 22A (США)</h3><p>Smith & Wesson (Смит-энд-Вессон) – крупнейший в США производитель огнестрельного оружия (в том числе револьверов).</p></div>
-</div>
-<div class="cell wcard">
-  <div class="shot"><img src="<?php echo $A; ?>/photo/oruzhie/card/25-pistolet-jarygina-pja-mr-443-grach-viking-rossija.webp" alt="Пистолет Ярыгина ПЯ МР-443 “Грач”, “Викинг” (Россия)" loading="lazy"></div>
-  <div class="body"><span class="num">15 /</span><h3>Пистолет Ярыгина ПЯ МР-443 «Грач», «Викинг» (Россия)</h3><p>Самозарядный пистолет российского производства, индекс ГРАУ – 6П35. Разработан коллективом конструкторов под руководством В. А. Ярыгина.</p></div>
-</div>
-<div class="cell wcard">
-  <div class="shot"><img class="mirror" src="<?php echo $A; ?>/photo/oruzhie/card/26-pistolet-pulemet-kedr-rossija.webp" alt="Пистолет-пулемёт «Кедр»" loading="lazy"></div>
-  <div class="body"><span class="num">16 /</span><h3>Пистолет-пулемёт «Кедр»</h3><p>Разработан конструктором-оружейником Евгением Драгуновым. «КЕДР» – «Конструкция Евгения Драгунова».</p></div>
-</div>
-<div class="cell wcard">
-  <div class="shot"><img src="<?php echo $A; ?>/photo/oruzhie/card/27-pistolet-makarova-sssr.webp" alt="Пистолет Макарова (СССР)" loading="lazy"></div>
-  <div class="body"><span class="num">17 /</span><h3>Пистолет Макарова (СССР)</h3><p>9-мм пистолет Макарова (ПМ, индекс ГАУ – 56-А-125) – самозарядный пистолет, разработанный советским конструктором Николаем Фёдоровичем Макаровым в 1948 году.</p></div>
-</div>
-<div class="cell wcard">
-  <div class="shot"><img src="<?php echo $A; ?>/photo/oruzhie/card/28-pistolet-p-96-gsh-18-rossija.webp" alt="Пистолет П-96, ГШ-18 (Россия)" loading="lazy"></div>
-  <div class="body"><span class="num">18 /</span><h3>Пистолет П-96, ГШ-18 (Россия)</h3><p>П-96 «Эфа» – опытный российский самозарядный пистолет, разработанный в середине 1990х годов Тульским КБ Приборостроения в качестве армейского пистолета.</p></div>
-</div>
-<div class="cell wcard">
-  <div class="shot"><img class="mirror" src="<?php echo $A; ?>/photo/oruzhie/card/29-pistolet-pulemet-shpagina-ppsh-.webp" alt="Пистолет-пулемёт Шпагина (ППШ)" loading="lazy"></div>
-  <div class="body"><span class="num">19 /</span><h3>Пистолет-пулемёт Шпагина (ППШ)</h3><p>Пистолет-пулемёт конструкции Г. С. Шпагина (1897–1952) принят на вооружение в декабре 1940 года. Выпущено больше 6 миллионов экземпляров.</p></div>
-</div>
-<div class="cell wcard">
-  <div class="shot"><img class="mirror" src="<?php echo $A; ?>/photo/oruzhie/card/30-pulemet-maksim.webp" alt="Пулемёт Максим" loading="lazy"></div>
-  <div class="body"><span class="num">20 /</span><h3>Пулемёт Максим</h3><p>Пулемёт Максим сконструирован Хайремом Стивенсом Максимом (4 февраля 1840 – 24 ноября 1916) в 1884 году.</p></div>
-</div>
-<div class="cell wcard">
-  <div class="shot"><img class="mirror" src="<?php echo $A; ?>/photo/oruzhie/card/31-pulemet-djagtereva.webp" alt="Пулемёт Дегтярёва" loading="lazy"></div>
-  <div class="body"><span class="num">21 /</span><h3>Пулемёт Дегтярёва</h3><p>Ручной пулемёт ДП (Дегтярёва, пехотный) – один из первых образцов стрелкового оружия, созданных при советской власти.</p></div>
-</div>
-<div class="cell wcard">
-  <div class="shot"><img src="<?php echo $A; ?>/photo/oruzhie/card/lebedev-pistolet.webp" alt="Пистолет Лебедева (Россия)" loading="lazy"></div>
-  <div class="body"><span class="num">22 /</span><h3>Пистолет Лебедева (Россия)</h3><p>Современный российский самозарядный пистолет под патрон 9×19 мм, разработан концерном «Калашников» на смену пистолету Макарова.</p></div>
-</div>
-<div class="cell wcard">
-  <div class="shot"><img src="<?php echo $A; ?>/photo/oruzhie/card/mosina-vintovka.webp" alt="Винтовка Мосина (СССР)" loading="lazy"></div>
-  <div class="body"><span class="num">23 /</span><h3>Винтовка Мосина (СССР)</h3><p>Легендарная «трёхлинейка» образца 1891/30 года – основное оружие пехоты Красной армии в годы Великой Отечественной войны.</p></div>
-</div>
+    <?php $wi = 0; foreach (odissey_weapon_rows() as $w): $wi++; if (!$w['image']) continue; ?>
+    <div class="cell wcard">
+      <div class="shot"><img<?php echo $w['mirror'] ? ' class="mirror"' : ''; ?> src="<?php echo esc_url($w['image']['url']); ?>" alt="<?php echo esc_attr($w['name']); ?>" loading="lazy"></div>
+      <div class="body"><span class="num"><?php printf('%02d /', $wi); ?></span><h3><?php echo esc_html($w['name']); ?></h3><?php if ($w['description'] !== ''): ?><p><?php echo esc_html($w['description']); ?></p><?php endif; ?></div>
+    </div>
+    <?php endforeach; ?>
   </div>
 </section>
 
@@ -277,9 +191,9 @@ get_header();
     </div>
   </div>
   <div class="bento g-3 bento--seamtop rv">
-    <div class="photo-cell"><img src="<?php echo $A; ?>/photo/tir/vyezd_stend_oruzhiya.webp" alt="Стенд оружия на выездном мероприятии" loading="lazy"><div class="photo-cap"><b>Стенды оружия</b>потрогать легенды руками</div></div>
-    <div class="photo-cell"><img src="<?php echo $A; ?>/photo/tir/vyezd_stend_tolpa.webp" alt="Выставка клуба на городском фестивале" loading="lazy"><div class="photo-cap"><b>Городские фестивали</b>выставка клуба</div></div>
-    <div class="photo-cell"><img src="<?php echo $A; ?>/photo/tir/vyezd_sborka_razborka.webp" alt="Сборка-разборка автомата на время" loading="lazy"><div class="photo-cap"><b>Сборка-разборка</b>классика нормативов</div></div>
+    <?php foreach (odissey_photo_rows('Выезды') as $p): if (!$p['image']) continue; ?>
+    <div class="photo-cell"><img src="<?php echo esc_url($p['image']['url']); ?>" alt="<?php echo esc_attr($p['title']); ?>" loading="lazy"><div class="photo-cap"><b><?php echo esc_html($p['title']); ?></b><?php echo esc_html($p['subtitle']); ?></div></div>
+    <?php endforeach; ?>
   </div>
 </section>
 
@@ -288,7 +202,7 @@ get_header();
     <div><h2>Готовы пострелять?</h2><p>Заявка на сайте или звонок в клуб – подберём программу и время.</p></div>
     <div class="btns">
       <button class="btn btn-solid" type="button" data-cta data-tema="Стрелковый тир">Оставить заявку</button>
-      <a class="btn btn-white" href="tel:+73422066161">+7 (342) 20-66-161</a>
+      <a class="btn btn-white" href="<?php echo esc_attr(odissey_tel(odissey_opt('phone_tir'))); ?>"><?php echo esc_html(odissey_opt('phone_tir')); ?></a>
     </div>
   </div>
 </section>

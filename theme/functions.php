@@ -16,6 +16,8 @@ function odissey_tir_file($filename) {
 
 // ACF-поля (прайс и пр.) — активны, если установлен плагин ACF
 require_once get_template_directory() . '/inc/acf-fields.php';
+// Перенос старого хардкод-контента (оружие, фотоблоки) в новые ACF-поля — один раз
+require_once get_template_directory() . '/inc/seed-content.php';
 
 /**
  * Базовая поддержка возможностей темы.
@@ -92,6 +94,8 @@ function odissey_opt($key) {
         'phone_duty1' => '+7 (342) 21-41-911',
         'phone_duty2' => '+7 (922) 333-29-11',
         'email'       => 'odyssey.security@mail.ru',
+        'email_tir'   => 'tirodissey@mail.ru',
+        'email_uc'    => 'dissey_uc@mail.ru',
         'address'     => 'Пермь, ул. Стахановская, 54Л',
     ];
     $val = get_theme_mod('odissey_' . $key, '');
@@ -101,6 +105,27 @@ function odissey_opt($key) {
 /** tel: из телефона (только цифры и +) */
 function odissey_tel($phone) {
     return 'tel:' . preg_replace('/[^\d+]/', '', $phone);
+}
+
+/**
+ * Прайс с ЛЮБОЙ страницы по слагу (не только текущей) — чтобы главная
+ * показывала те же позиции, что и страница раздела, без дублирования цен.
+ * @param string $slug    слаг страницы, напр. 'tir', 'uc'
+ * @param string $section '' = все позиции этой страницы; иначе — только раздел
+ */
+function odissey_price_rows_for($slug, $section = '') {
+    $page = get_page_by_path($slug);
+    if (!$page || !function_exists('get_field')) return [];
+    $rows = get_field('price_list', $page->ID);
+    if (!$rows) return [];
+    $out = [];
+    foreach ($rows as $r) {
+        $sec = trim($r['section'] ?? '');
+        if ($section === '' || $sec === $section) {
+            $out[] = ['name' => $r['name'] ?? '', 'price' => $r['price'] ?? '', 'note' => $r['note'] ?? ''];
+        }
+    }
+    return $out;
 }
 
 /**
@@ -114,7 +139,9 @@ function odissey_customize($wp) {
         'phone_uc'    => 'Телефон учебного центра',
         'phone_duty1' => 'Дежурная часть 1',
         'phone_duty2' => 'Дежурная часть 2',
-        'email'       => 'E-mail',
+        'email'       => 'E-mail (охрана)',
+        'email_tir'   => 'E-mail (тир)',
+        'email_uc'    => 'E-mail (учебный центр)',
         'address'     => 'Адрес',
     ];
     foreach ($fields as $key => $label) {

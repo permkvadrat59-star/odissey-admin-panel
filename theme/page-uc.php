@@ -14,10 +14,10 @@ get_header();
   <div class="hero-video-scrim"></div>
   <div class="wrap hero-video-inner">
     <nav class="crumbs"><a href="<?php echo esc_url(home_url('/')); ?>">Главная</a><span>/</span>Учебный центр</nav>
-    <div class="kicker">ЧУ ДПО «УЦ Одиссей» · лицензия № 6801</div>
+    <div class="kicker">ЧУ ДПО «УЦ Одиссей» · лицензия № 6801</div>
     <h1>Учебный центр</h1>
-    <p class="hero-sub hero-sub--mobile-hide">Подготовка и повышение квалификации частных охранников 4–6 разрядов, курсы по оружию для граждан, подготовка руководителей ЧОП. Свой тир для практики, экзамены на месте.</p>
-    <div class="cta-row"><button class="btn btn-red" type="button" data-cta data-tema="Обучение в УЦ">Записаться</button><a class="btn btn-line" href="tel:+73422061911">+7 (342) 20-61-911</a></div>
+    <p class="hero-sub hero-sub--mobile-hide">Подготовка и повышение квалификации частных охранников 4–6 разрядов, курсы по оружию для граждан, подготовка руководителей ЧОП. Свой тир для практики, экзамены на месте.</p>
+    <div class="cta-row"><button class="btn btn-red" type="button" data-cta data-tema="Обучение в УЦ">Записаться</button><a class="btn btn-line" href="<?php echo esc_attr(odissey_tel(odissey_opt('phone_uc'))); ?>"><?php echo esc_html(odissey_opt('phone_uc')); ?></a></div>
   </div>
 </section>
 
@@ -40,8 +40,9 @@ get_header();
     <?php endforeach; ?>
   </div>
   <div class="bento g-2 bento--seamtop rv">
-    <div class="photo-cell" style="min-height:320px"><img src="<?php echo $A; ?>/photo/uc_zanyatie.webp" alt="Занятие в учебном классе УЦ «Одиссей»" loading="lazy"><div class="photo-cap"><b>Занятия в классе</b>теория, разбор ситуаций с инструктором</div></div>
-    <div class="photo-cell" style="min-height:320px"><img src="<?php echo $A; ?>/photo/uc_ekzamen.webp" alt="Квалификационный экзамен охранника" loading="lazy"><div class="photo-cap"><b>Экзамен и документы</b>периодическая проверка по графику</div></div>
+    <?php foreach (odissey_photo_rows('Занятия') as $p): if (!$p['image']) continue; ?>
+    <div class="photo-cell" style="min-height:320px"><img src="<?php echo esc_url($p['image']['url']); ?>" alt="<?php echo esc_attr($p['title']); ?>" loading="lazy"><div class="photo-cap"><b><?php echo esc_html($p['title']); ?></b><?php echo esc_html($p['subtitle']); ?></div></div>
+    <?php endforeach; ?>
   </div>
   <div class="bento bento--seamtop rv">
     <div class="cell cell--compact cell--static">
@@ -77,7 +78,7 @@ get_header();
     </div>
     <div class="hb-side">
       <span class="hb-note">Экзамен — каждую пятницу с 12:00</span>
-      <a class="hb-phone" href="tel:+73422061911">+7 (342) 20-61-911</a>
+      <a class="hb-phone" href="<?php echo esc_attr(odissey_tel(odissey_opt('phone_uc'))); ?>"><?php echo esc_html(odissey_opt('phone_uc')); ?></a>
     </div>
   </div>
   <div class="bento g-3 bento--seamtop rv">
@@ -164,10 +165,10 @@ get_header();
 
 <section class="wrap" style="margin-top:128px">
   <div class="cta-band rv">
-    <div><h2>Записаться на обучение</h2><p>Подскажем программу и ближайшие даты.</p></div>
+    <div><h2>Записаться на обучение</h2><p>Подскажем программу и ближайшие даты.</p></div>
     <div class="btns">
-      <button class="btn btn-solid" type="button" data-cta data-tema="Обучение в УЦ">Оставить заявку</button>
-      <a class="btn btn-white" href="tel:+73422061911">+7 (342) 20-61-911</a>
+      <button class="btn btn-solid" type="button" data-cta data-tema="Обучение в УЦ">Оставить заявку</button>
+      <a class="btn btn-white" href="<?php echo esc_attr(odissey_tel(odissey_opt('phone_uc'))); ?>"><?php echo esc_html(odissey_opt('phone_uc')); ?></a>
     </div>
   </div>
 </section>

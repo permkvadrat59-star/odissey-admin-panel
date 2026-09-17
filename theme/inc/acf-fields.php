@@ -140,6 +140,120 @@ add_action('acf/init', function () {
         'position'   => 'normal',
         'description'=> 'Цены услуг. Выводятся на страницах Тир, Обучение, Охрана, Полиграф.',
     ]);
+
+    // ── Фотоблоки страницы: галереи с подписью (выезды, занятия и т.п.) ──
+    acf_add_local_field_group([
+        'key'    => 'group_odissey_photos',
+        'title'  => 'Фотоблоки',
+        'fields' => [[
+            'key'          => 'field_odissey_photos',
+            'label'        => 'Фотографии',
+            'name'         => 'photo_list',
+            'type'         => 'repeater',
+            'instructions' => 'Фото с подписью для галерей страницы (напр. «Одиссей на выезде», «Занятия в классе»). Раздел — служебная метка, группирует карточки одного блока.',
+            'layout'       => 'block',
+            'button_label' => 'Добавить фото',
+            'sub_fields'   => [
+                [
+                    'key'   => 'field_odissey_photos_section',
+                    'label' => 'Раздел',
+                    'name'  => 'section',
+                    'type'  => 'text',
+                    'instructions' => 'Группирует фото одного блока, напр. «Выезды», «Занятия».',
+                    'wrapper' => ['width' => '20'],
+                ],
+                [
+                    'key'   => 'field_odissey_photos_image',
+                    'label' => 'Фото',
+                    'name'  => 'image',
+                    'type'  => 'image',
+                    'return_format' => 'array',
+                    'preview_size'  => 'medium',
+                    'required' => 1,
+                    'wrapper' => ['width' => '25'],
+                ],
+                [
+                    'key'   => 'field_odissey_photos_title',
+                    'label' => 'Заголовок подписи',
+                    'name'  => 'title',
+                    'type'  => 'text',
+                    'wrapper' => ['width' => '25'],
+                ],
+                [
+                    'key'   => 'field_odissey_photos_subtitle',
+                    'label' => 'Текст подписи',
+                    'name'  => 'subtitle',
+                    'type'  => 'text',
+                    'wrapper' => ['width' => '30'],
+                ],
+            ],
+        ]],
+        'location' => [
+            [['param' => 'post_type', 'operator' => '==', 'value' => 'page']],
+        ],
+        'menu_order' => 7,
+        'position'   => 'normal',
+        'description'=> 'Фотогалереи с подписями. Одна и та же страница может иметь несколько разделов (разные фотоблоки), различай их полем «Раздел».',
+    ]);
+
+    // ── Арсенал (оружие): карточки оружия на странице «Тир» ──
+    acf_add_local_field_group([
+        'key'    => 'group_odissey_weapons',
+        'title'  => 'Арсенал (оружие)',
+        'fields' => [[
+            'key'          => 'field_odissey_weapons',
+            'label'        => 'Единицы оружия',
+            'name'         => 'weapon_list',
+            'type'         => 'repeater',
+            'instructions' => 'Карточки в блоке «Арсенал клуба». Порядок — перетаскиванием, нумерация «01/, 02/...» проставляется автоматически.',
+            'layout'       => 'block',
+            'button_label' => 'Добавить оружие',
+            'sub_fields'   => [
+                [
+                    'key'   => 'field_odissey_weapons_image',
+                    'label' => 'Фото',
+                    'name'  => 'image',
+                    'type'  => 'image',
+                    'return_format' => 'array',
+                    'preview_size'  => 'medium',
+                    'required' => 1,
+                    'wrapper' => ['width' => '25'],
+                ],
+                [
+                    'key'   => 'field_odissey_weapons_mirror',
+                    'label' => 'Отзеркалить фото',
+                    'name'  => 'mirror',
+                    'type'  => 'true_false',
+                    'instructions' => 'Развернуть фото по горизонтали (если оружие смотрит не в ту сторону).',
+                    'ui'    => 1,
+                    'wrapper' => ['width' => '10'],
+                ],
+                [
+                    'key'   => 'field_odissey_weapons_name',
+                    'label' => 'Название',
+                    'name'  => 'name',
+                    'type'  => 'text',
+                    'required' => 1,
+                    'wrapper' => ['width' => '30'],
+                ],
+                [
+                    'key'   => 'field_odissey_weapons_desc',
+                    'label' => 'Описание',
+                    'name'  => 'description',
+                    'type'  => 'textarea',
+                    'rows'  => 2,
+                    'new_lines' => '',
+                    'wrapper' => ['width' => '35'],
+                ],
+            ],
+        ]],
+        'location' => [
+            [['param' => 'post_type', 'operator' => '==', 'value' => 'page']],
+        ],
+        'menu_order' => 8,
+        'position'   => 'normal',
+        'description'=> 'Оружие в блоке «Арсенал клуба» на странице Тир.',
+    ]);
 });
 
 /**
@@ -226,4 +340,45 @@ function odissey_price_sections() {
         if (!in_array($s, $secs, true)) $secs[] = $s;
     }
     return $secs;
+}
+
+/**
+ * Фотоблок нужного раздела текущей страницы (или страницы $page_id).
+ * @param string   $section раздел (напр. «Выезды», «Занятия»); '' — все фото страницы
+ * @param int|null $page_id ID страницы; null — текущая (полезно для главной,
+ *                          которая показывает фото со страницы другого раздела)
+ * @return array список ['image' => ['url'=>...,'alt'=>...], 'title', 'subtitle']
+ */
+function odissey_photo_rows($section = '', $page_id = null) {
+    if (!function_exists('get_field')) return [];
+    $rows = $page_id ? get_field('photo_list', $page_id) : get_field('photo_list');
+    if (!$rows) return [];
+    $out = [];
+    foreach ($rows as $r) {
+        $sec = trim($r['section'] ?? '');
+        if ($section === '' || $sec === $section) {
+            $out[] = ['image' => $r['image'] ?? null, 'title' => $r['title'] ?? '', 'subtitle' => $r['subtitle'] ?? ''];
+        }
+    }
+    return $out;
+}
+
+/**
+ * Оружие текущей страницы (карточки «Арсенал клуба»).
+ * @return array список ['image', 'mirror', 'name', 'description']
+ */
+function odissey_weapon_rows() {
+    if (!function_exists('get_field')) return [];
+    $rows = get_field('weapon_list');
+    if (!$rows) return [];
+    $out = [];
+    foreach ($rows as $r) {
+        $out[] = [
+            'image'       => $r['image'] ?? null,
+            'mirror'      => !empty($r['mirror']),
+            'name'        => $r['name'] ?? '',
+            'description' => $r['description'] ?? '',
+        ];
+    }
+    return $out;
 }
