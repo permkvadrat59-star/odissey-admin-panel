@@ -343,6 +343,29 @@ function odissey_price_sections() {
 }
 
 /**
+ * Приводит значение ACF-поля «Изображение» к единому виду ['url'=>...,'alt'=>...].
+ * ACF при чтении обычно отдаёт массив (return_format=array), но для строк
+ * репитера, сохранённых напрямую через update_field() (см. inc/seed-content.php),
+ * иногда возвращает голый ID вложения — учитываем оба варианта, иначе фото
+ * молча не показывается на сайте при полностью рабочих текстовых полях.
+ * @param mixed $img значение поля: int|string ID, массив ACF или null
+ * @return array|null ['url', 'alt'] или null, если картинки нет/не найдена
+ */
+function odissey_normalize_image($img) {
+    if (is_array($img) && !empty($img['url'])) {
+        return ['url' => $img['url'], 'alt' => $img['alt'] ?? ''];
+    }
+    if (is_numeric($img)) {
+        $id = (int) $img;
+        $url = wp_get_attachment_image_url($id, 'large');
+        if (!$url) return null;
+        $alt = get_post_meta($id, '_wp_attachment_image_alt', true);
+        return ['url' => $url, 'alt' => (string) $alt];
+    }
+    return null;
+}
+
+/**
  * Фотоблок нужного раздела текущей страницы (или страницы $page_id).
  * @param string   $section раздел (напр. «Выезды», «Занятия»); '' — все фото страницы
  * @param int|null $page_id ID страницы; null — текущая (полезно для главной,
@@ -357,7 +380,7 @@ function odissey_photo_rows($section = '', $page_id = null) {
     foreach ($rows as $r) {
         $sec = trim($r['section'] ?? '');
         if ($section === '' || $sec === $section) {
-            $out[] = ['image' => $r['image'] ?? null, 'title' => $r['title'] ?? '', 'subtitle' => $r['subtitle'] ?? ''];
+            $out[] = ['image' => odissey_normalize_image($r['image'] ?? null), 'title' => $r['title'] ?? '', 'subtitle' => $r['subtitle'] ?? ''];
         }
     }
     return $out;
@@ -374,7 +397,7 @@ function odissey_weapon_rows() {
     $out = [];
     foreach ($rows as $r) {
         $out[] = [
-            'image'       => $r['image'] ?? null,
+            'image'       => odissey_normalize_image($r['image'] ?? null),
             'mirror'      => !empty($r['mirror']),
             'name'        => $r['name'] ?? '',
             'description' => $r['description'] ?? '',
