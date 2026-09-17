@@ -152,9 +152,21 @@ function odissey_customize($wp) {
 add_action('customize_register', 'odissey_customize');
 
 /**
+ * Почта-получатель заявки по теме обращения — заявки по тиру уходят
+ * на почту тира, а не в общий ящик охраны.
+ */
+function odissey_lead_email($topic) {
+    $tir_topics = ['Стрелковый тир', 'Подарочная карта в тир'];
+    if (in_array($topic, $tir_topics, true)) {
+        return odissey_opt('email_tir');
+    }
+    return odissey_opt('email');
+}
+
+/**
  * Приём заявки с формы.
- * Шлёт письмо на почту из настроек и сохраняет копию как запись «Заявка».
- * (Полноценная настройка канала — этап 5; здесь базовый рабочий приём.)
+ * Шлёт письмо на почту из настроек (по теме — см. odissey_lead_email())
+ * и сохраняет копию как запись «Заявка».
  */
 function odissey_handle_lead() {
     if (!isset($_POST['odissey_lead_nonce']) || !wp_verify_nonce($_POST['odissey_lead_nonce'], 'odissey_lead')) {
@@ -169,7 +181,7 @@ function odissey_handle_lead() {
     $comment = sanitize_textarea_field($_POST['comment'] ?? '');
     $ref     = wp_get_referer() ?: home_url('/');
 
-    $to      = odissey_opt('email');
+    $to      = odissey_lead_email($topic);
     $subject = 'Заявка с сайта: ' . ($topic ?: 'без темы');
     $body    = "Имя: {$name}\nТелефон: {$phone}\nТема: {$topic}\nКомментарий: {$comment}\n"
              . "Страница: {$ref}\n\nВсе заявки: " . admin_url('edit.php?post_type=odissey_lead') . "\n";

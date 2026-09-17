@@ -1,0 +1,13 @@
+{
+  "name": "Odissey — демо админки (WordPress + ACF)",
+  "image": "mcr.microsoft.com/devcontainers/php:1-8.3-bullseye",
+  "forwardPorts": [8899],
+  "portsAttributes": {
+    "8899": {
+      "label": "Одиссей — wp-admin",
+      "onAutoForward": "openBrowser"
+    }
+  },
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+  "postStartCommand": "bash .devcontainer/start.sh"
+}

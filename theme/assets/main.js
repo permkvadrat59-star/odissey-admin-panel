@@ -89,6 +89,39 @@
     lb.addEventListener('click', () => lb.close());
   }
 
+  // Маска телефона: +7 всегда на месте, вводить нужно только оставшиеся цифры.
+  // Backspace/Delete стирают по одной цифре с конца (а не по символу) — иначе
+  // стирание залипает на закрывающей скобке и не даёт очистить номер до конца.
+  document.querySelectorAll('input[type="tel"][name="phone"]').forEach(input => {
+    const toDigits = raw => {
+      let d = raw.replace(/\D/g, '');
+      if (d.charAt(0) === '7' || d.charAt(0) === '8') d = d.slice(1);
+      return d.slice(0, 10);
+    };
+    const format = digits => {
+      let out = '+7 ';
+      if (digits.length) out += '(' + digits.slice(0, 3);
+      if (digits.length >= 3) out += ')';
+      if (digits.length > 3) out += ' ' + digits.slice(3, 6);
+      if (digits.length > 6) out += '-' + digits.slice(6, 8);
+      if (digits.length > 8) out += '-' + digits.slice(8, 10);
+      return out;
+    };
+    const setDigits = digits => {
+      input.value = format(digits);
+      input.setCustomValidity(digits.length === 10 ? '' : 'Введите номер телефона полностью');
+    };
+    if (!input.value) setDigits('');
+    input.addEventListener('focus', () => { if (!input.value) setDigits(''); });
+    input.addEventListener('keydown', e => {
+      if (e.key === 'Backspace' || e.key === 'Delete') {
+        e.preventDefault();
+        setDigits(toDigits(input.value).slice(0, -1));
+      }
+    });
+    input.addEventListener('input', () => setDigits(toDigits(input.value)));
+  });
+
   // Модалка заявки
   const cta = document.getElementById('ctaDialog');
   if (cta) {
