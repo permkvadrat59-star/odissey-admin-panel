@@ -1,0 +1,14 @@
+/*
+Theme Name: Одиссей
+Theme URI: https://gpodyssey.ru
+Description: Тема группы предприятий безопасности «Одиссей» (Пермь). Перенос авторского редизайна на WordPress: охрана, тир, музей, учебный центр, полиграф, «Добрые дела». Дизайн правится в шаблонах темы, контент — в админке.
+Author: GGroup
+Version: 1.0.0
+Requires at least: 6.0
+Tested up to: 6.6
+Requires PHP: 7.4
+Text Domain: odissey
+*/
+
+/* Реальные стили темы — в assets/styles.css (подключаются через functions.php).
+   Этот файл обязателен для WordPress и несёт только заголовок темы. */
